@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Page Title</title>
+    <meta charset="UTF-8" />
+</head>
+
+<body>
+    <script>
+        // Your JavaScript goes here!
+        function computerPlay() {
+            let play = Math.floor(Math.random() * 3);
+
+            switch (play) {
+                case 0:
+                    return "ROCK";
+                    break;
+                case 1:
+                    return "PAPER";
+                    break;
+                case 2:
+                    return "SCISSORS";
+                    break;
+                default:
+                    console.log("No valid selection by computer");
+                    break;
+
+            }
+        }
+
+        function playerSelection() {
+            while (true) {
+                let play = prompt("Choose: ROCK, PAPER, SCISSORS").toUpperCase();
+                if (play === "ROCK" || play === "PAPER" || play === "SCISSORS") {
+                    return play;
+                } else {
+                    alert("Invalid. Please enter a valid selection");
+                }
+            }
+        }
+
+        function playRound(playerSelection, computerSelection) {
+            if ((playerSelection === "ROCK" && computerSelection === "PAPER") ||
+                (playerSelection === "PAPER" && computerSelection === "SCISSORS") ||
+                (playerSelection === "SCISSORS" && computerSelection === "ROCK")) {
+                return "You lose! " + computerSelection + " beats " + playerSelection + "!";
+            } else if ((playerSelection === "ROCK" && computerSelection === "SCISSORS") ||
+                (playerSelection === "PAPER" && computerSelection === "ROCK") ||
+                (playerSelection === "SCISSORS" && computerSelection === "PAPER")) {
+                return "You win! " + playerSelection + " beats " + computerSelection + "!";
+            } else {
+                return "It's a tie. You both picked " + playerSelection + ".";
+            }
+        }
+
+
+        console.log(playRound(playerSelection(), computerPlay()));
+    </script>
+</body>
+
+</html>
