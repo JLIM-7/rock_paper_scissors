@@ -9,6 +9,10 @@
 <body>
     <script>
         // Your JavaScript goes here!
+
+        let playerScore = 0;
+        let computerScore = 0;
+
         function computerPlay() {
             let play = Math.floor(Math.random() * 3);
 
@@ -23,7 +27,7 @@
                     return "SCISSORS";
                     break;
                 default:
-                    console.log("No valid selection by computer");
+                    console.log("No valid selection by computer (fix script)");
                     break;
 
             }
@@ -31,7 +35,7 @@
 
         function playerSelection() {
             while (true) {
-                let play = prompt("Choose: ROCK, PAPER, SCISSORS").toUpperCase();
+                let play = prompt("Choose: ROCK, PAPER, or SCISSORS").toUpperCase();
                 if (play === "ROCK" || play === "PAPER" || play === "SCISSORS") {
                     return play;
                 } else {
@@ -44,18 +48,32 @@
             if ((playerSelection === "ROCK" && computerSelection === "PAPER") ||
                 (playerSelection === "PAPER" && computerSelection === "SCISSORS") ||
                 (playerSelection === "SCISSORS" && computerSelection === "ROCK")) {
+                computerScore++;
                 return "You lose! " + computerSelection + " beats " + playerSelection + "!";
             } else if ((playerSelection === "ROCK" && computerSelection === "SCISSORS") ||
                 (playerSelection === "PAPER" && computerSelection === "ROCK") ||
                 (playerSelection === "SCISSORS" && computerSelection === "PAPER")) {
+                playerScore++;
                 return "You win! " + playerSelection + " beats " + computerSelection + "!";
             } else {
                 return "It's a tie. You both picked " + playerSelection + ".";
             }
         }
 
+        function game() {
+            for (i = 0; i < 5; i++) {
+                console.log(playRound(playerSelection(), computerPlay()));
+            }
+            if (playerScore > computerScore) {
+                alert("You win with a score of: " + playerScore + " to " + computerScore + "!");
+            } else if (computerScore > playerScore) {
+                alert("You lose with a score of: " + playerScore + " to " + computerScore + "!");
+            } else {
+                alert("It was a tie game.");
+            }
+        }
 
-        console.log(playRound(playerSelection(), computerPlay()));
+        game();
     </script>
 </body>
 
